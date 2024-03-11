@@ -1,6 +1,6 @@
 describe('Create User', () => {
   context('Positive Scenario', () => {
-    it.only('Create User', () => {
+    it.skip('Create User', () => {
       cy.visit('https://barrigareact.wcaquino.me')
       cy.url().should('eq', 'https://barrigareact.wcaquino.me/login')
       cy.contains('Registrar').click()
@@ -18,7 +18,6 @@ describe('Create User', () => {
       cy.get('input[placeholder="Senha"]').type('Paty123456')
       cy.contains('button', 'Registrar').click()
       cy.wait('@registerResponse').then((response) => {
-        console.log(response)
         expect(response.response.statusMessage).to.be.equal("Created")
       })
       cy.url().should('eq', 'https://barrigareact.wcaquino.me/login')
@@ -40,11 +39,17 @@ describe('Create User', () => {
         url: '**/usuarios'
       }).as('registerResponse')
       cy.contains('button', 'Registrar').click()
-      cy.get('@registerResponse').then((response) => {
-        console.log(response)
+      cy.wait('@registerResponse').then((response) => {
+        expect(response.response.body.detail).to.be.equal("Key (email)=(patricie.lope@hotmail.com) already exists.")
       })
       cy.get('.toast-message').contains('Erro: Error: Request failed with status code 500')
+      cy.get('.toast').should('have.css', 'background-color', 'rgb(189, 54, 47)')
+      cy.get('.toast').invoke('css', 'background-color').then((a) => {
+        console.log(a)
+      })
     })
   });
+
+
   
 })
