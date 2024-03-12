@@ -1,27 +1,36 @@
-describe('Create User', () => {
+describe('Change Account', () => {
   context('Positive Scenario', () => {
-    it.skip('Create User', () => {
+    it('Change Account', () => {
       cy.visit('https://barrigareact.wcaquino.me')
+
+
       cy.url().should('eq', 'https://barrigareact.wcaquino.me/login')
-      cy.contains('Registrar').click()
-      cy.url().should('eq', 'https://barrigareact.wcaquino.me/registro')
-      cy.randomName().then((name) => {
-        cy.get('input[placeholder="Nome"]').type(name)
-      })
-      cy.randomEmail().then((email) => {
-        cy.get('input[placeholder="Email"]').type(email)
-      })
-      cy.intercept({
-        method: 'POST',
-        url: '**/usuarios'
-      }).as('registerResponse')
+      cy.get('[data-test="email"]').type('patricie.lope@gmail.com')
       cy.get('input[placeholder="Senha"]').type('Paty123456')
-      cy.contains('button', 'Registrar').click()
-      cy.wait('@registerResponse').then((response) => {
-        expect(response.response.statusMessage).to.be.equal("Created")
-      })
-      cy.url().should('eq', 'https://barrigareact.wcaquino.me/login')
-      cy.get('.toast-message').contains('Usuário adicionado com sucesso')
+      cy.contains('button', 'Entrar').click()
+
+
+
+
+      // cy.contains('Registrar').click()
+      // cy.url().should('eq', 'https://barrigareact.wcaquino.me/registro')
+      // cy.randomName().then((name) => {
+      //   cy.get('input[placeholder="Nome"]').type(name)
+      // })
+      // cy.randomEmail().then((email) => {
+      //   cy.get('input[placeholder="Email"]').type(email)
+      // })
+      // cy.intercept({
+      //   method: 'POST',
+      //   url: '**/usuarios'
+      // }).as('registerResponse')
+      // cy.get('input[placeholder="Senha"]').type('Paty123456')
+      // cy.wait('@registerResponse').then((response) => {
+      //   expect(response.response.statusMessage).to.be.equal("Created")
+      // })
+      // cy.url().should('eq', 'https://barrigareact.wcaquino.me/login')
+      // cy.get('.toast-message').contains('Usuário adicionado com sucesso')
+      // cy.get('.toast').should('have.css', 'background-color', 'rgb(81, 163, 81)')
     })
   });
 
@@ -44,9 +53,7 @@ describe('Create User', () => {
       })
       cy.get('.toast-message').contains('Erro: Error: Request failed with status code 500')
       cy.get('.toast').should('have.css', 'background-color', 'rgb(189, 54, 47)')
-      cy.get('.toast').invoke('css', 'background-color').then((a) => {
-        console.log(a)
-      })
+      
     })
   });
 
