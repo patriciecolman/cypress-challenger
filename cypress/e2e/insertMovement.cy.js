@@ -8,9 +8,14 @@ describe('Insert movement', () => {
             cy.contains('button', 'Entrar').click()
             cy.get('[data-test="menu-settings"]').click()
             cy.get('.nav-link.dropdown-item').contains("Contas").click()
-            cy.get('[data-test="nome"]').type("Tom")
+            cy.randomName().then((name) => {
+                cy.get('[data-test="nome"]').type(name)
+            })
+            
             cy.get('.btn').click()
             cy.get('.toast-close-button').parent().should('have.css', 'background-color', 'rgb(81, 163, 81)')
+            cy.get('[data-test="menu-movimentacao"] > .fas').click()
+            cy.get('[data-test="data-transacao"]').type("2024-03-14")
             
             
 
