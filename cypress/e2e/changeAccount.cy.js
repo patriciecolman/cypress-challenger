@@ -3,7 +3,6 @@ describe('Change Account', () => {
     it('Change Account', () => {
       cy.visit('https://barrigareact.wcaquino.me')
 
-
       cy.url().should('eq', 'https://barrigareact.wcaquino.me/login')
       cy.get('[data-test="email"]').type('patricie.lope@gmail.com')
       cy.get('input[placeholder="Senha"]').type('Paty123456')
