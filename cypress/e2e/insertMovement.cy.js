@@ -15,19 +15,15 @@ describe('Insert movement', () => {
             cy.get('.btn').click()
             cy.get('.toast-close-button').parent().should('have.css', 'background-color', 'rgb(81, 163, 81)')
             cy.get('[data-test="menu-movimentacao"] > .fas').click()
-            cy.get('[data-test="data-transacao"]').type("2024-03-14")
-            
-            
-
-            
-
-
-
-
-
-
-            // cy.get('[data-test="menu-movimentacao"]').click()
-            
+            cy.get('[data-test="data-transacao"]').type("2024-03-18")
+            cy.get('[data-test="data-pagamento"]').type("2024-03-19")
+            cy.get('[data-test="descricao"]').type("paty")
+            cy.get('[data-test="valor"]').type("100")
+            cy.get('[data-test="envolvido"]').type("1")
+            cy.get('[data-test="conta"]').type("Tom")
+            cy.get('[data-test="status"]').click()
+            cy.get('.btn-primary').click()
+           // cy.get('[data-test="menu-movimentacao"]').click()
         })
     })
 })
